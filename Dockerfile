@@ -5,4 +5,5 @@ WORKDIR /app
 RUN mix hex.info
 RUN npm install
 EXPOSE 4000
+EXPOSE 4001
 ENTRYPOINT mix phoenix.server

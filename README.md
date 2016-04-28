@@ -2,6 +2,16 @@
 
 Entry for the League of Legends API Challenge 2016
 
+# Installation
+
+Assuming you have node, elixir, and phoenix installed:
+
+```
+npm install
+mix hex.info
+mix phoenix.server
+```
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/
