@@ -9,6 +9,7 @@ Assuming you have node, elixir, and phoenix installed:
 ```
 npm install
 mix hex.info
+mix deps.get
 mix phoenix.server
 ```
 
