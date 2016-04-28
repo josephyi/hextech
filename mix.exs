@@ -19,7 +19,7 @@ defmodule Hextech.Mixfile do
   def application do
     [mod: {Hextech, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                     ]]
   end
 
   # Specifies which paths to compile per environment.
@@ -47,6 +47,7 @@ defmodule Hextech.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "phoenix.digest": "hextech.digest"]
   end
 end

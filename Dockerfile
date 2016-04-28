@@ -1,9 +1,13 @@
-FROM josephyi/alpine-phoenix:1.1
+FROM josephyi/alpine-phoenix:1.2
 
-ADD . /app
 WORKDIR /app
-RUN mix hex.info
+ENV MIX_ENV=prod
+COPY package.json /app
+COPY mix.exs /app
 RUN npm install
+RUN mix deps.get
+COPY . /app
+RUN mix compile && mix phoenix.digest
 EXPOSE 4000
 EXPOSE 4001
-ENTRYPOINT mix phoenix.server
+CMD ["mix", "phoenix.server"]

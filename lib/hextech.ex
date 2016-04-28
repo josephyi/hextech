@@ -10,7 +10,7 @@ defmodule Hextech do
       # Start the endpoint when the application starts
       supervisor(Hextech.Endpoint, []),
       # Start the Ecto repository
-      supervisor(Hextech.Repo, []),
+      # supervisor(Hextech.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(Hextech.Worker, [arg1, arg2, arg3]),
     ]
