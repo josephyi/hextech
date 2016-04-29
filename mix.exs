@@ -18,7 +18,7 @@ defmodule Hextech.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Hextech, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :viktor
                      ]]
   end
 
@@ -36,7 +36,9 @@ defmodule Hextech.Mixfile do
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:poison, "~> 2.1.0", override: true},
+     {:viktor, "~> 0.0.9"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
