@@ -12,6 +12,18 @@ mix hex.info
 mix deps.get
 mix phoenix.server
 ```
+# Docker
+
+```
+# Installing node modules
+docker run -it -v $(pwd):/app --rm hextech npm install
+
+# Installing new package
+docker run -it -v $(pwd):/app --rm hextech npm install --save some_other_lib
+
+# Running Phoenix
+docker run -it -v $(pwd):/app -p 4000:4000 -p 4001:4001 -e MIX_ENV=dev --rm hextech mix phoenix.server
+```
 
 ## Learn more
 
