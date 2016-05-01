@@ -24,7 +24,7 @@ if (env === 'dev') {
 
 module.exports = {
   devtool: prod ? null : 'cheap-module-eval-source-map',
-  entry: prod ? entry : [hot, entry],
+  entry: prod ? entry : ['react-hot-loader/patch', hot, entry],
   output: {
     path: path.resolve(__dirname) + '/priv/static/js',
     filename: 'index.bundle.js',
