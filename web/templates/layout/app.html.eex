@@ -8,9 +8,7 @@
     <meta name="author" content="">
 
     <title>Hello Hextech!</title>
-    <script src="<%= static_path(@conn, "/js/material.min.js") %>"></script>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/material.min.css") %>">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 
   </head>
 
