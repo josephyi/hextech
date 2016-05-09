@@ -20,7 +20,9 @@ defmodule Hextech.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Hextech do
-  #   pipe_through :api
-  # end
+  scope "/matchery", Hextech do
+     pipe_through :api
+
+     get "/:region/:summoner_name", MatcheryController, :craft
+  end
 end
