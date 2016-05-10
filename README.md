@@ -1,3 +1,5 @@
+TLDR; can't finish project in time for submission due to real life, but I'll try to finish it eventually!
+
 # Hextech
 
 Entry for the League of Legends API Challenge 2016
