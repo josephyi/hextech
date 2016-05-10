@@ -1,6 +1,6 @@
 import React from 'react'
 import {Button, ControlLabel, Form, FormGroup, FormControl, Navbar} from 'react-bootstrap'
-const App = (props) => (
+const SummonerPage = (props) => (
     <div>
         <Navbar inverse>
             <Navbar.Header>
@@ -43,4 +43,4 @@ const App = (props) => (
     </div>
 );
 
-export default App;
+export default SummonerPage;

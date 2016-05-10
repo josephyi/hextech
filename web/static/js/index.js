@@ -4,24 +4,30 @@ import '../../../deps/phoenix_html/priv/static/phoenix_html'
 
 // Shiny new, hot React component
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
+import { browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
-import App from './components/App'
+import Root from './containers/Root'
+import configureStore from './store/configureStore'
 
-const rootEl = document.getElementById('root');
-ReactDOM.render(
+const rootEl = document.getElementById('root')
+const store = configureStore()
+const history = syncHistoryWithStore(browserHistory, store)
+
+render(
     <AppContainer>
-      <App />
+        <Root store={store} history={history} />
     </AppContainer>,
     rootEl
 );
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
+  module.hot.accept('./containers/Root', () => {
     // If you use Webpack 2 in ES modules mode, you can
     // use <App /> here rather than require() a <NextApp />.
-    const NextApp = require('./components/App').default;
-    ReactDOM.render(
+    const NextApp = require('./containers/Root').default;
+    render(
         <AppContainer>
           <NextApp />
         </AppContainer>,
@@ -29,49 +35,3 @@ if (module.hot) {
     );
   });
 }
-//import { List, ListItem, ListItemContent, Layout, Header, Navigation, Drawer, Content } from 'react-mdl'
-//
-//class Root extends Component {
-//  render () {
-//    return <List>
-//    <ListItem>
-//    <ListItemContent icon="person">Bryan Cranston~~!</ListItemContent>
-//    </ListItem>
-//    <ListItem>
-//    <ListItemContent icon="person">Aaron Paul</ListItemContent>
-//    </ListItem>
-//    <ListItem>
-//    <ListItemContent icon="person">Bob Odenkirk!</ListItemContent>
-//    </ListItem>
-//    </List>
-//  }
-//}
-//const Root = () => (
-//      <Layout>
-//        <Header title="Title" scroll>
-//          <Navigation>
-//            <a href="">Links@@s</a>
-//            <a href="">Link</a>
-//            <a href="">Link</a>
-//            <a href="">Link</a>
-//          </Navigation>
-//        </Header>
-//        <Drawer title="Title">
-//          <Navigation>
-//            <a href="">Link11111</a>
-//            <a href="">Link</a>
-//            <a href="">Link</a>
-//            <a href="">Link</a>
-//          </Navigation>
-//        </Drawer>
-//        <Content>
-//          <div className="page-content" />
-//        </Content>
-//      </Layout>
-//);
-
-//ReactDOM.render(
-//    <Root />,
-//    document.querySelector('#root')
-//);
-

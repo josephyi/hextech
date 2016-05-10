@@ -7,6 +7,8 @@ defmodule Mix.Tasks.Hextech.ImageProcessor do
     Mix.Task.run "app.start", []
     version = Viktor.Operation.StaticData.version("na") |> Enum.at(0)
 
+    birthdays = File.stream!("data/birthdays.csv") |> CSV.decode |> Map.new(&{Enum.at(&1, 0), Enum.at(&1,1)})
+
     static_champions = Viktor.static_data_champion("na", [dataById: "true", champData: "image"])["data"]
     images = static_champions
     |> Map.values
@@ -22,14 +24,17 @@ defmodule Mix.Tasks.Hextech.ImageProcessor do
     end
     )
 
-    static_champions
+    output = static_champions
     |> Map.values
     |> Map.new(&({Integer.to_string(&1["id"]), %{
       "name" => &1["name"],
-      "hex" => (&1["image"] |> Map.fetch!("full") |> avg_rgb("/tmp")),
-      "dec" => (&1["image"] |> Map.fetch!("full") |> avg_rgb("/tmp")) |> Hexate.to_integer
+      "rgb" => (&1["image"] |> Map.fetch!("full") |> avg_rgb("/tmp")),
+      "hex" => (&1["image"] |> Map.fetch!("full") |> avg_rgb("/tmp")) |> Enum.map(fn x -> Hexate.encode(String.to_integer(x)) end) |> Enum.join,
+      "birthday" => Map.fetch!(birthdays, &1["name"])
       }}))
-    |> Poison.encode! |> IO.puts
+    |> Poison.encode!
+
+    File.write!("data/fun.json", output)
   end
 
   def avg_rgb(filename, path) do
@@ -38,8 +43,6 @@ defmodule Mix.Tasks.Hextech.ImageProcessor do
     |> List.flatten
     |> Enum.map(&(Tuple.to_list(&1)))
     |> Enum.reduce([0,0,0], &([Enum.at(&1, 0) + Enum.at(&2, 0), Enum.at(&1, 1) + Enum.at(&2, 1), Enum.at(&1, 2) + Enum.at(&2, 2)]))
-    |> Enum.map(&(&1/(png.width * png.height)))
-    |> Enum.map(&(Hexate.encode(&1)))
-    |> Enum.join
+    |> Enum.map(&(Integer.to_string(round(&1/(png.width * png.height)))))
   end
 end
